@@ -7,7 +7,7 @@ app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
   var today = new Date();
-  var currentDay = today.getDate();
+  var currentDay = today.getDay();
   var day = "";
 
   if (currentDay === 6 || currentDay === 0) {
