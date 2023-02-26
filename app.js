@@ -5,36 +5,26 @@ const app = express();
 
 app.set("view engine", "ejs");
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get("/", function (req, res) {
   var today = new Date();
-  var currentDay = today.getDay();
-  var day = "";
 
-  switch (currentDay) {
-    case 0:
-      day = "Sunday";
-      break;
-    case 1:
-      day = "Sunday";
-      break;
-    case 2:
-      day = "Sunday";
-      break;
-    case 3:
-      day = "Sunday";
-      break;
-    case 4:
-      day = "Sunday";
-      break;
-    case 5:
-      day = "Sunday";
-      break;
-    case 6:
-      day = "Sunday";
-      break;
-  }
+  const date = new Date();
+  const options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  };
+  const day = date.toLocaleString("en-US", options);
+  console.log(day);
 
   res.render("list", { kindOfDay: day });
+});
+
+app.post("/", function (req, res) {
+  var item = req.body.newItem;
+  console.log(item);
 });
 
 app.listen(3000, function () {
